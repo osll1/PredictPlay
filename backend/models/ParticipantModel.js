@@ -1,32 +1,3 @@
-// models/Participant.js
-
-// const mongoose = require("mongoose");
-
-// // הגדרת הסכימה עבור המשתתף
-// const participantSchema = new mongoose.Schema({
-//   userName: { type: String, required: true },
-//   scorerImage: { type: String, required: true },
-//   winnerImage: { type: String, required: true },
-//   points: { type: Number, default: 0 },
-//   predictions: [
-//     {
-//       gameId: String,
-//       homeScore: Number,
-//       awayScore: Number,
-//     },
-//   ],
-// });
-
-// // יצירת המודל Participant
-// const Participant = mongoose.model("Participant", participantSchema);
-
-// module.exports = Participant;
-
-
-
-
-
-
 
 
 const mongoose = require("mongoose");

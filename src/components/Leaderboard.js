@@ -1,4 +1,4 @@
-// src/components/Leaderboard.js
+
 import React, { useState, useEffect } from "react";
 import {
   Table,
@@ -18,11 +18,12 @@ import axios from "axios";
 const Leaderboard = () => {
   const [participants, setParticipants] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = process.env.API_URL;
 
   useEffect(() => {
     const fetchParticipants = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/participants"); // כתובת ה-API לשליפת המשתתפים
+        const response = await axios.get(`${API_URL}/participants`); // כתובת ה-API לשליפת המשתתפים
         setParticipants(response.data);
         setLoading(false);
       } catch (error) {
@@ -35,7 +36,7 @@ const Leaderboard = () => {
   }, []);
 
   const getFullImagePath = (relativePath) => {
-    return `http://localhost:5000/${relativePath}`; // שינוי לפי הכתובת המתאימה לשרת שלך
+    return `${API_URL}/${relativePath}`; // שינוי לפי הכתובת המתאימה לשרת שלך
   };
 
   return (

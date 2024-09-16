@@ -8,10 +8,12 @@ const UserProfile = () => {
   const [user, setUser] = useState(null); // אחסון נתוני המשתמש
   const [loading, setLoading] = useState(true); // תצוגת טעינה עד לטעינת הנתונים
 
+  const API_URL = process.env.API_URL;
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/participants/${id}`);
+        const response = await axios.get(`${API_URL}/participants/${id}`);
         setUser(response.data); // קבלת הנתונים והצגתם
         setLoading(false); // עצירת טעינת המידע
       } catch (error) {
@@ -47,7 +49,7 @@ const UserProfile = () => {
         <Box sx={{ display: "flex", alignItems: "center", mb: 4 }}>
           <Avatar
             alt={user.userName}
-            src={`http://localhost:5000/${user.avatar}`}
+            src={`${API_URL}/${user.avatar}`}
             sx={{ width: 100, height: 100, marginRight: 2 }}
           />
           <Typography variant="h4">הפרופיל של {user.userName}</Typography>
