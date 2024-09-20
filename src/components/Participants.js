@@ -35,7 +35,7 @@ const Participants = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  const API_URL = process.env.PUBLIC_URL;
+  const API_URL = process.env.RREACT_APP_API_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
