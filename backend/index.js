@@ -16,16 +16,11 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares
 app.use(cors({
-<<<<<<< HEAD
-    origin: "https://predict-play-vsj3.vercel.app"  // כתובת הדומיין של ה-frontend
+
+    origin: "https://predict-play-vsj5.vercel.app"  // כתובת הדומיין של ה-frontend
   }));
   
-=======
-  origin: "https://predict-play-vsj3.vercel.app"  // כתובת הדומיין של ה-frontend
-}));
 
-
->>>>>>> 07ca192f719eb34ff43ec84c47f6102e2a22c6ab
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

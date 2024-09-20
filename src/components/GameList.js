@@ -35,6 +35,9 @@ const GameList = ({ games, setGames }) => {
   const [success, setSuccess] = useState(false); // מצב הודעת הצלחה
   const API_URL = process.env.API_URL;
 
+  console.log(API_URL);
+  
+
   const token = localStorage.getItem("token");
   let userRole = null;
 

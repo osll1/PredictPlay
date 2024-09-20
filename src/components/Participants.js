@@ -35,8 +35,7 @@ const Participants = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  const API_URL = process.env.API_URL;
-
+  const API_URL = process.env.PUBLIC_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
