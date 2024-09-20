@@ -99,7 +99,7 @@ const Participants = () => {
           <TableHead>
             <TableRow>
               <TableCell>מספר משתתף</TableCell>
-              <TableCell>שם משתמש</TableCell>
+              <TableCell>שם </TableCell>
               <TableCell>מלך שערים</TableCell>
               <TableCell>קבוצה מנצחת</TableCell>
               <TableCell>נקודות</TableCell>
