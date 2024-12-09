@@ -1,4 +1,7 @@
 
+
+
+
 import React, { useState, useEffect } from "react";
 import {
   TextField,
@@ -15,12 +18,14 @@ import {
   Snackbar,
   Alert,
   IconButton,
+  Grid,
+  Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const GameList = ({ games, setGames }) => {
   const [newGame, setNewGame] = useState({
@@ -33,10 +38,7 @@ const GameList = ({ games, setGames }) => {
   });
   const [error, setError] = useState(""); // מצב הודעות שגיאה
   const [success, setSuccess] = useState(false); // מצב הודעת הצלחה
-  const API_URL = process.env.API_URL;
-
-  console.log(API_URL);
-  
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const token = localStorage.getItem("token");
   let userRole = null;
@@ -111,102 +113,135 @@ const GameList = ({ games, setGames }) => {
 
   return (
     <Box p={2}>
-      <h2 style={{ marginBottom: "20px", textAlign: "center", color: "#1976d2" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{
+          color: "#1976d2",
+          fontWeight: "bold",
+          textShadow: "1px 1px 4px rgba(0,0,0,0.3)",
+        }}
+      >
         ניהול משחקים
-      </h2>
+      </Typography>
       {userRole === "admin" && (
-        <Box
-          display="flex"
-          gap="16px"
-          mb={3}
-          flexWrap="wrap"
-          justifyContent="center"
-          alignItems="center"
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            mb: 3,
+            bgcolor: "#f9f9f9",
+            p: 2,
+            borderRadius: "12px",
+            boxShadow: 3,
+          }}
         >
-          <TextField
-            label="תאריך"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            value={newGame.date}
-            onChange={(e) => setNewGame({ ...newGame, date: e.target.value })}
-            sx={{ minWidth: 180 }}
-          />
-          <TextField
-            label="שעה"
-            type="time"
-            InputLabelProps={{ shrink: true }}
-            value={newGame.time}
-            onChange={(e) => setNewGame({ ...newGame, time: e.target.value })}
-            sx={{ minWidth: 150 }}
-          />
-          <TextField
-            label="קבוצה א'"
-            value={newGame.homeTeam}
-            onChange={(e) => setNewGame({ ...newGame, homeTeam: e.target.value })}
-            sx={{ minWidth: 180 }}
-          />
-          <Button
-            variant="outlined"
-            component="label"
-            startIcon={<UploadFileIcon />}
-            sx={{ minWidth: 160 }}
-          >
-            העלה תמונה א'
-            <input
-              type="file"
-              hidden
-              onChange={(e) => handleImageUpload(e, "homeTeam")}
-              accept="image/*"
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              label="תאריך"
+              type="date"
+              InputLabelProps={{ shrink: true }}
+              value={newGame.date}
+              onChange={(e) => setNewGame({ ...newGame, date: e.target.value })}
+              fullWidth
             />
-          </Button>
-          <TextField
-            label="קבוצה ב'"
-            value={newGame.awayTeam}
-            onChange={(e) => setNewGame({ ...newGame, awayTeam: e.target.value })}
-            sx={{ minWidth: 180 }}
-          />
-          <Button
-            variant="outlined"
-            component="label"
-            startIcon={<UploadFileIcon />}
-            sx={{ minWidth: 160 }}
-          >
-            העלה תמונה ב'
-            <input
-              type="file"
-              hidden
-              onChange={(e) => handleImageUpload(e, "awayTeam")}
-              accept="image/*"
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              label="שעה"
+              type="time"
+              InputLabelProps={{ shrink: true }}
+              value={newGame.time}
+              onChange={(e) => setNewGame({ ...newGame, time: e.target.value })}
+              fullWidth
             />
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addGame}
-            sx={{
-              minWidth: 180,
-              transition: "background-color 0.3s ease, transform 0.3s ease",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1976d2")}
-            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2196f3")}
-            onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.98)")}
-            onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            startIcon={<AddCircleIcon />}
-          >
-            הוסף משחק
-          </Button>
-        </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              label="קבוצה א'"
+              value={newGame.homeTeam}
+              onChange={(e) => setNewGame({ ...newGame, homeTeam: e.target.value })}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Button
+              variant="outlined"
+              component="label"
+              fullWidth
+              startIcon={<UploadFileIcon />}
+            >
+              העלה תמונה א'
+              <input
+                type="file"
+                hidden
+                onChange={(e) => handleImageUpload(e, "homeTeam")}
+                accept="image/*"
+              />
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              label="קבוצה ב'"
+              value={newGame.awayTeam}
+              onChange={(e) => setNewGame({ ...newGame, awayTeam: e.target.value })}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Button
+              variant="outlined"
+              component="label"
+              fullWidth
+              startIcon={<UploadFileIcon />}
+            >
+              העלה תמונה ב'
+              <input
+                type="file"
+                hidden
+                onChange={(e) => handleImageUpload(e, "awayTeam")}
+                accept="image/*"
+              />
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={addGame}
+              startIcon={<AddCircleIcon />}
+              sx={{
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)" },
+              }}
+            >
+              הוסף משחק
+            </Button>
+          </Grid>
+        </Grid>
       )}
-      <TableContainer component={Paper} sx={{ borderRadius: "8px", boxShadow: 2 , marginBottom:"80px" }}>
+      <TableContainer
+        component={Paper}
+        sx={{
+          borderRadius: "12px",
+          boxShadow: 3,
+          overflow: "hidden",
+          mb: 4,
+        }}
+      >
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>תאריך ושעה</TableCell>
-              <TableCell>קבוצה א'</TableCell>
-              <TableCell>תמונה א'</TableCell>
-              <TableCell>קבוצה ב'</TableCell>
-              <TableCell>תמונה ב'</TableCell>
-              {userRole === "admin" && <TableCell>פעולות</TableCell>}
+            <TableRow sx={{ bgcolor: "#1976d2" }}>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>תאריך ושעה</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>קבוצה א'</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>תמונה א'</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>קבוצה ב'</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>תמונה ב'</TableCell>
+              {userRole === "admin" && (
+                <TableCell sx={{ color: "white", fontWeight: "bold" }}>פעולות</TableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -215,7 +250,7 @@ const GameList = ({ games, setGames }) => {
                 key={game._id}
                 sx={{
                   "&:hover": {
-                    backgroundColor: "#f5f5f5",
+                    bgcolor: "#f1f1f1",
                   },
                 }}
               >
@@ -225,7 +260,11 @@ const GameList = ({ games, setGames }) => {
                   <Avatar
                     src={game.homeTeamImage}
                     alt={game.homeTeam}
-                    sx={{ width: 50, height: 50, borderRadius: "8px" }}
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      border: "2px solid #1976d2",
+                    }}
                   />
                 </TableCell>
                 <TableCell>{game.awayTeam}</TableCell>
@@ -233,7 +272,11 @@ const GameList = ({ games, setGames }) => {
                   <Avatar
                     src={game.awayTeamImage}
                     alt={game.awayTeam}
-                    sx={{ width: 50, height: 50, borderRadius: "8px" }}
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      border: "2px solid #1976d2",
+                    }}
                   />
                 </TableCell>
                 {userRole === "admin" && (
@@ -241,7 +284,11 @@ const GameList = ({ games, setGames }) => {
                     <IconButton
                       color="error"
                       onClick={() => deleteGame(game._id)}
-                      sx={{ color: "red" }}
+                      sx={{
+                        color: "red",
+                        transition: "transform 0.3s ease",
+                        "&:hover": { transform: "scale(1.2)" },
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>

@@ -75,6 +75,9 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import UserProfile from "./pages/UserProfile";
+import HowToPlay from "./pages/HowToPlay";
+import Notifications from "./pages/Notifications";
+import PrivateLeagues from "./pages/PrivateLeagues";
 
 const App = () => {
   const [games, setGames] = useState([]);
@@ -120,6 +123,10 @@ const App = () => {
           <Route path="/live-game/:id" element={<LiveGame />} /> {/* נתיב עבור משחקים לייב */}
           <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
           <Route path="/profile/:id" element={<UserProfile />} />
+          <Route path="/how-to-play" element={<HowToPlay />} />
+          <Route path="/notifications" element={<Notifications/>}/>
+          <Route path="/private-leagues" element={<PrivateLeagues/>}/>
+
         </Routes>
         <Footer/>
       </div>
