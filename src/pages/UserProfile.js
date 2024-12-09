@@ -231,7 +231,7 @@ const UserProfile = () => {
   const [error, setError] = useState(""); // שמירת הודעות שגיאה
   const [success, setSuccess] = useState(false); // שמירת הודעות הצלחה
 
-  const API_URL = "http://localhost:5000"; // כתובת ה-API הבסיסית
+  const API_URL = process.env.REACT_APP_API_URL;; // כתובת ה-API הבסיסית
 
   // פונקציה שמביאה את נתוני המשתמש מהשרת
   useEffect(() => {
